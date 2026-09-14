@@ -235,6 +235,110 @@ function App() {
             ))}
           </div>
         </section>
+
+        <section className="map-section">
+          <div className="section-heading map-heading">
+            <div>
+              <span className="section-kicker dark-kicker">Map & Evacuation Route</span>
+              <h2>Safe Route Overview</h2>
+            </div>
+            <span className="map-mode">
+              <span className="map-dot" aria-hidden="true" />
+              Live Routing
+            </span>
+          </div>
+
+          <div className="map-shell">
+            <div className="map-frame">
+              <div className="map-surface">
+                <div className="map-titlebar">
+                  <span className="map-title">San Pedro Flood Zone</span>
+                  <span className="map-date">08:45 AM</span>
+                </div>
+
+                <div className="map-river river-one" />
+                <div className="map-river river-two" />
+
+                <div className="map-flood-area">
+                  <span className="flood-area-label">Flood Affected Area</span>
+                </div>
+
+                <svg className="route-svg" viewBox="0 0 600 360" preserveAspectRatio="none">
+                  <path className="route-path" d="M120 250 C170 205, 190 210, 220 176 S280 160, 300 180 S330 210, 360 190 S420 190, 440 150" />
+                </svg>
+
+                <div className="map-pin map-user-pin">
+                  <span className="pin-icon user-icon">
+                    <svg viewBox="0 0 24 24" className="pin-svg">
+                      <path d="M12 2C8 2 5 5.1 5 8.7C5 13.3 12 22 12 22S19 13.3 19 8.7C19 5.1 16 2 12 2Z" />
+                      <circle cx="12" cy="8.7" r="2.7" />
+                    </svg>
+                  </span>
+                  <span className="pin-label">You</span>
+                </div>
+
+                <div className="map-pin map-shelter-pin">
+                  <span className="pin-icon shelter-icon">
+                    <svg viewBox="0 0 24 24" className="pin-svg">
+                      <path d="M12 2C8 2 5 5.1 5 8.7C5 13.3 12 22 12 22S19 13.3 19 8.7C19 5.1 16 2 12 2Z" />
+                      <circle cx="12" cy="8.7" r="2.7" />
+                    </svg>
+                  </span>
+                  <span className="pin-label">Eastside Shelter</span>
+                </div>
+
+                <div className="map-pin map-flood-pin">
+                  <span className="pin-icon flood-icon">
+                    <svg viewBox="0 0 24 24" className="pin-svg">
+                      <path d="M3 15C5.8 10.7 8.2 9.8 10 13C12 8.8 14.1 7.8 16 12C18.2 8 21 9 21 12C20 14 18 16 15 14C13 15.3 10.9 14.7 9.4 11.8C8.2 12.2 6.2 13.7 3 15Z" />
+                    </svg>
+                  </span>
+                  <span className="pin-label">Flood Zone</span>
+                </div>
+              </div>
+            </div>
+
+            <aside className="route-panel">
+              <div className="route-panel-head">
+                <span className="route-panel-title">Evacuation Route</span>
+                <span className="route-distance">1.2 km</span>
+              </div>
+
+              <div className="route-route">
+                <div className="route-step">
+                  <span className="route-step-dot route-dot-start" />
+                  <div>
+                    <span className="route-label">Start</span>
+                    <span className="route-value">San Pedro</span>
+                  </div>
+                </div>
+                <div className="route-step">
+                  <span className="route-step-line" />
+                </div>
+                <div className="route-step">
+                  <span className="route-step-dot route-dot-shelter" />
+                  <div>
+                    <span className="route-label">Destination</span>
+                    <span className="route-value">Eastside Community Shelter</span>
+                  </div>
+                </div>
+              </div>
+
+              <div className="route-stats">
+                <div>
+                  <span className="route-stat-label">Travel Time</span>
+                  <span className="route-stat-value">08 min</span>
+                </div>
+                <div>
+                  <span className="route-stat-label">Risk Level</span>
+                  <span className="route-stat-value high-risk">High</span>
+                </div>
+              </div>
+
+              <button className="route-button">Start Route</button>
+            </aside>
+          </div>
+        </section>
       </main>
     </div>
   );

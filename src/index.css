@@ -1,0 +1,55 @@
+:root {
+  font-family: "Inter", "Segoe UI", Roboto, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  color: #1f4d53;
+  background: #eef6f4;
+
+  --page-bg: #eef7f6;
+  --panel-bg: #ffffff;
+  --white: #ffffff;
+  --text-primary: #123b42;
+  --muted-text: #607a7e;
+  --brand-color: #117f89;
+  --brand-surface: #d9f3f3;
+  --nav-border: #cfe4df;
+  --line-soft: #dcebe9;
+  --input-bg: #f8fbfa;
+  --danger: #d14c4c;
+  --risk-card-bg: linear-gradient(135deg, #115a62 0%, #0b4052 100%);
+  --success-bg: #dff7ea;
+  --success-text: #167454;
+  --warning-bg: #ffeedb;
+  --warning-text: #a96a21;
+  --deep-shadow: 0 24px 90px rgba(10, 71, 76, 0.24);
+  --soft-shadow: 0 12px 30px rgba(16, 79, 86, 0.08);
+}
+
+* {
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  background: var(--page-bg);
+}
+
+a {
+  color: inherit;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+::selection {
+  background: var(--brand-color);
+  color: var(--white);
+}

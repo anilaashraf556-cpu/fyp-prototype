@@ -339,6 +339,82 @@ function App() {
             </aside>
           </div>
         </section>
+
+        <section className="emergency-section">
+          <div className="section-heading emergency-heading">
+            <div>
+              <span className="section-kicker dark-kicker">Emergency Information</span>
+              <h2>Flood Safety Instructions</h2>
+            </div>
+            <span className="alert-banner">
+              <span className="alert-banner-dot" aria-hidden="true" />
+              Flood Warning Active
+            </span>
+          </div>
+
+          <div className="emergency-grid">
+            <article className="emergency-card">
+              <div className="emergency-card-head">
+                <span className="emergency-icon">!</span>
+                <span className="emergency-title">What to Do During a Flood</span>
+              </div>
+              <ul className="emergency-list">
+                <li>Move to higher ground immediately.</li>
+                <li>Follow official evacuation alerts.</li>
+                <li>Keep your emergency pack nearby.</li>
+                <li>Use safe routes and avoid flooded roads.</li>
+              </ul>
+            </article>
+
+            <article className="emergency-card danger-card">
+              <div className="emergency-card-head">
+                <span className="emergency-icon">×</span>
+                <span className="emergency-title">Things to Avoid</span>
+              </div>
+              <ul className="emergency-list">
+                <li>Do not walk through fast-moving water.</li>
+                <li>Avoid flooded power lines and damaged wires.</li>
+                <li>Do not return home until officials declare it safe.</li>
+                <li>Do not drink flood water or use it for cooking.</li>
+              </ul>
+            </article>
+
+            <article className="emergency-card">
+              <div className="emergency-card-head">
+                <span className="emergency-icon">✓</span>
+                <span className="emergency-title">Preparation Checklist</span>
+              </div>
+              <ul className="emergency-list">
+                <li>Pack water, medicines, and flashlights.</li>
+                <li>Charge phones and emergency lights.</li>
+                <li>Save shelter and family contact information.</li>
+                <li>Prepare a small emergency bag.</li>
+              </ul>
+            </article>
+          </div>
+
+          <div className="contacts-section">
+            <div className="contacts-panel">
+              <div className="contacts-heading">
+                <span className="contacts-title">Emergency Contact Information</span>
+              </div>
+              <div className="contact-list">
+                <div className="contact-row">
+                  <span className="contact-label">National Emergency</span>
+                  <span className="contact-value">911</span>
+                </div>
+                <div className="contact-row">
+                  <span className="contact-label">Flood Response Hotline</span>
+                  <span className="contact-value">+1 (800) 555-0147</span>
+                </div>
+                <div className="contact-row">
+                  <span className="contact-label">Local Rescue Team</span>
+                  <span className="contact-value">San Pedro Command</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
       </main>
     </div>
   );

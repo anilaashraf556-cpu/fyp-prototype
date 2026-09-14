@@ -1,26 +1,45 @@
 import "./App.css";
 
-const shelters = [
+const modelShelters = [
   {
+    id: 1,
     name: "Eastside Community Shelter",
-    type: "Public Shelter",
+    address: "12 Riverside Avenue, East District",
     distance: "1.2 km",
-    capacity: "36 / 50",
+    totalCapacity: 80,
+    availableSpaces: 44,
     status: "Open",
+    type: "Public Shelter",
   },
   {
+    id: 2,
     name: "San Pedro School Center",
-    type: "School Shelter",
+    address: "25 Central Road, San Pedro",
     distance: "2.4 km",
-    capacity: "18 / 40",
+    totalCapacity: 60,
+    availableSpaces: 31,
     status: "Open",
+    type: "School Shelter",
   },
   {
+    id: 3,
     name: "Riverside Medical Post",
-    type: "Medical Facility",
+    address: "8 Floodway Street, Riverside",
     distance: "3.0 km",
-    capacity: "12 / 30",
+    totalCapacity: 45,
+    availableSpaces: 12,
     status: "Limited",
+    type: "Medical Facility",
+  },
+  {
+    id: 4,
+    name: "Barangay Health Hall",
+    address: "19 Kalye Puso, Barangay Bayan",
+    distance: "4.1 km",
+    totalCapacity: 50,
+    availableSpaces: 22,
+    status: "Open",
+    type: "Community Shelter",
   },
 ];
 
@@ -158,8 +177,8 @@ function App() {
         <section className="shelter-section">
           <div className="section-heading">
             <div>
-              <span className="section-kicker dark-kicker">Recommended Shelters</span>
-              <h2>Nearby Safe Places</h2>
+              <span className="section-kicker dark-kicker">Shelter Recommendations</span>
+              <h2>Recommended Flood Shelters</h2>
             </div>
             <a className="view-link" href="#">
               View all
@@ -167,8 +186,8 @@ function App() {
           </div>
 
           <div className="shelter-grid">
-            {shelters.map((shelter) => (
-              <article className="shelter-card" key={shelter.name}>
+            {modelShelters.map((shelter) => (
+              <article className="shelter-card" key={shelter.id}>
                 <div className="shelter-card-head">
                   <span className="shelter-type">{shelter.type}</span>
                   <span className={`shelter-status ${shelter.status.toLowerCase()}`}>
@@ -177,6 +196,14 @@ function App() {
                 </div>
                 <div className="shelter-card-body">
                   <h3>{shelter.name}</h3>
+                  <div className="address-line">
+                    <svg viewBox="0 0 24 24" className="mini-icon">
+                      <path d="M12 2C8 2 5 5.1 5 8.7C5 13.3 12 22 12 22S19 13.3 19 8.7C19 5.1 16 2 12 2Z" />
+                      <circle cx="12" cy="8.7" r="2.7" />
+                    </svg>
+                    <span>{shelter.address}</span>
+                  </div>
+
                   <div className="shelter-meta">
                     <span>
                       <svg viewBox="0 0 24 24" className="mini-icon">
@@ -188,8 +215,20 @@ function App() {
                       <svg viewBox="0 0 24 24" className="mini-icon">
                         <path d="M5 5h14v14H5z" />
                       </svg>
-                      {shelter.capacity}
+                      Capacity {shelter.totalCapacity}
                     </span>
+                    <span>
+                      <svg viewBox="0 0 24 24" className="mini-icon">
+                        <path d="M12 2a10 10 0 1 0 10 10" />
+                        <path d="M12 8h.01M12 12l4 4" />
+                      </svg>
+                      {shelter.availableSpaces} spaces
+                    </span>
+                  </div>
+
+                  <div className="card-footer">
+                    <span className="safety-label">Safety: {shelter.status}</span>
+                    <button className="details-button">View Details</button>
                   </div>
                 </div>
               </article>

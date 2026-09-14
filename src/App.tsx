@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import "./App.css";
 
 const modelShelters = [
@@ -44,6 +45,27 @@ const modelShelters = [
 ];
 
 function App() {
+  const [backendStatus, setBackendStatus] = useState("offline");
+  const [backendMessage, setBackendMessage] = useState("Backend Offline");
+
+  useEffect(() => {
+    fetch("http://localhost:5000/api/health")
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Health endpoint unavailable");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        setBackendStatus("connected");
+        setBackendMessage(data.message || "Backend Connected");
+      })
+      .catch(() => {
+        setBackendStatus("offline");
+        setBackendMessage("Backend Offline");
+      });
+  }, []);
+
   return (
     <div className="flood-app">
       <nav className="topbar">
@@ -131,6 +153,17 @@ function App() {
                 <span className="stat-value">14m</span>
                 <span className="stat-label">Avg. Response</span>
               </div>
+            </div>
+
+            <div className="backend-status-card">
+              <div className="backend-status-top">
+                <span className="backend-title">Backend Connection</span>
+                <span className={`backend-indicator ${backendStatus}`}></span>
+              </div>
+              <div className={`backend-status-text ${backendStatus}`}>
+                {backendStatus === "connected" ? "Backend Connected" : "Backend Offline"}
+              </div>
+              <div className="backend-status-message">{backendMessage}</div>
             </div>
           </section>
 

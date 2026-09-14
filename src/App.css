@@ -1113,3 +1113,70 @@
   }
 }
 
+.backend-status-card {
+  width: min(360px, 100%);
+  background: var(--white);
+  margin-top: 18px;
+  border-radius: 20px;
+  padding: 16px 18px;
+  border: 1px solid var(--line-soft);
+  box-shadow: var(--soft-shadow);
+}
+
+.backend-status-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.backend-title {
+  color: var(--text-primary);
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.backend-indicator {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: var(--danger);
+  border: 2px solid var(--warning-bg);
+}
+
+.backend-indicator.connected {
+  background: var(--success-text);
+  border-color: var(--success-bg);
+}
+
+.backend-status-text {
+  margin-top: 12px;
+  font-size: 20px;
+  font-weight: 900;
+  color: var(--danger);
+}
+
+.backend-status-text.connected {
+  color: var(--success-text);
+}
+
+.backend-status-message {
+  margin-top: 8px;
+  color: var(--muted-text);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.backend-status-text.offline {
+  color: var(--danger);
+}
+
+.backend-status-text.connected {
+  color: var(--success-text);
+}
+
+.backend-status-text:not(.connected):not(.offline) {
+  color: var(--muted-text);
+}
+

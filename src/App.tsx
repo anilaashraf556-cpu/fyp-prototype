@@ -45,9 +45,28 @@ const modelShelters = [
   },
 ];
 
+type WeatherData = {
+  location: string;
+  current: {
+    temperature: number;
+    precipitation: number;
+    humidity: number;
+    windSpeed: number;
+    units: {
+      temperature_2m: string;
+      precipitation: string;
+      relative_humidity_2m: string;
+      wind_speed_10m: string;
+    };
+  };
+};
+
 function App() {
   const [backendStatus, setBackendStatus] = useState("offline");
   const [backendMessage, setBackendMessage] = useState("Backend Offline");
+  const [weather, setWeather] = useState<WeatherData | null>(null);
+  const [weatherLoading, setWeatherLoading] = useState(true);
+  const [weatherError, setWeatherError] = useState("");
 
   useEffect(() => {
     fetch("http://localhost:5000/api/health")
@@ -64,6 +83,26 @@ function App() {
       .catch(() => {
         setBackendStatus("offline");
         setBackendMessage("Backend Offline");
+      });
+  }, []);
+
+  useEffect(() => {
+    fetch("http://localhost:5000/api/weather")
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Weather request failed");
+        }
+        return response.json() as Promise<WeatherData>;
+      })
+      .then((data) => {
+        setWeather(data);
+        setWeatherError("");
+      })
+      .catch(() => {
+        setWeatherError("Weather data is currently unavailable.");
+      })
+      .finally(() => {
+        setWeatherLoading(false);
       });
   }, []);
 
@@ -166,6 +205,56 @@ function App() {
               </div>
               <div className="backend-status-message">{backendMessage}</div>
             </div>
+
+            <section className="weather-card" aria-live="polite">
+              <div className="weather-card-heading">
+                <div>
+                  <span className="weather-kicker">Current Weather</span>
+                  <h2>Weather Conditions</h2>
+                </div>
+                <span className="weather-symbol" aria-hidden="true">°</span>
+              </div>
+
+              {weatherLoading && (
+                <p className="weather-message">Loading weather data...</p>
+              )}
+
+              {!weatherLoading && weatherError && (
+                <p className="weather-message weather-error">{weatherError}</p>
+              )}
+
+              {!weatherLoading && weather && (
+                <>
+                  <p className="weather-location">{weather.location}</p>
+                  <div className="weather-grid">
+                    <div className="weather-value-block weather-temperature">
+                      <span className="weather-value">
+                        {weather.current.temperature}{weather.current.units.temperature_2m}
+                      </span>
+                      <span className="weather-label">Temperature</span>
+                    </div>
+                    <div className="weather-value-block">
+                      <span className="weather-value">
+                        {weather.current.precipitation} {weather.current.units.precipitation}
+                      </span>
+                      <span className="weather-label">Precipitation</span>
+                    </div>
+                    <div className="weather-value-block">
+                      <span className="weather-value">
+                        {weather.current.humidity}{weather.current.units.relative_humidity_2m}
+                      </span>
+                      <span className="weather-label">Humidity</span>
+                    </div>
+                    <div className="weather-value-block">
+                      <span className="weather-value">
+                        {weather.current.windSpeed} {weather.current.units.wind_speed_10m}
+                      </span>
+                      <span className="weather-label">Wind Speed</span>
+                    </div>
+                  </div>
+                </>
+              )}
+            </section>
           </section>
 
           <aside className="risk-card">
